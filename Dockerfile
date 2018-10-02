@@ -1,3 +1,7 @@
-FROM fluent/fluentd:v1.2
+FROM fluent/fluentd:v1.2.5-debian
 
-RUN td-agent-gem install fluent-plugin-rewrite-tag-filter fluent-plugin-nats fluent-plugin-elasticsearch
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update && apt install -y build-essential ruby-dev
+
+RUN fluent-gem install fluent-plugin-rewrite-tag-filter fluent-plugin-nats fluent-plugin-elasticsearch
